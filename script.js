@@ -1,25 +1,28 @@
 const Input= document.getElementById("Input");
 const addButton= document.getElementById("add-button");
-const todoList=document.getElementById("todoList");
+const toDoList=document.getElementById("list");
 
 function addToDo() {
     if(Input.value!=null){
         const li=document.createElement("li");
         const delBtn=document.createElement("button");
         const span =document.createElement("span");
-        delBtn.innerText="x";
-        span.value=Input.value;
+        delBtn.className="del-btn";
+        delBtn.textContent="x";
+        span.textContent=Input.value;
         li.appendChild(span);
         li.appendChild(delBtn);
-        todoList.appendChild(li);
-        Input.value="";
-
+        toDoList.appendChild(li);
+        delBtn.addEventListener("click", delToDo);
+        span.addEventListener("click", toggle);
+        Input.value=" ";
     }
 }
 
-function delToDO(event) {
-    var delList = event.target.parentNode;
-    delList.remove();
+function delToDo(event) {
+    var remove = event.target.parentNode;
+    var parentNode=remove.parentNode;
+    parentNode.removeChild(remove);
 }
 
 function toggle(event){
